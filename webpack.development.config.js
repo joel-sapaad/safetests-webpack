@@ -38,7 +38,7 @@ module.exports = {
   },
   plugins: [],
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   devServer: {
     client: {
