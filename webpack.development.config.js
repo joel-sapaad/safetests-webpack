@@ -1,8 +1,8 @@
 const path = require("path");
 
 module.exports = {
-  mode: 'development',
-  entry: "./src/index.tsx",
+  mode: "development",
+  entry: ["./src/index.tsx", __dirname + "/src/index.scss"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -18,11 +18,25 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
+        type: "asset/resource",
+        generator: {
+          filename: "bundle.css",
+        },
+        use: ["sass-loader"],
       },
     ],
   },
+  plugins: [],
   resolve: {
     extensions: [".js", ".jsx"],
   },
